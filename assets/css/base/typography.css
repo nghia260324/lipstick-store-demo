@@ -1,0 +1,127 @@
+/* ===========================
+   TYPOGRAPHY SYSTEM
+   =========================== */
+
+/* Google Fonts import */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
+
+/* ── Headings ── */
+.heading-display {
+  font-family: var(--font-secondary);
+  font-size: var(--text-4xl);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-tight);
+  letter-spacing: -0.02em;
+}
+
+.heading-1 {
+  font-family: var(--font-secondary);
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-tight);
+}
+
+.heading-2 {
+  font-family: var(--font-primary);
+  font-size: var(--text-2xl);
+  font-weight: var(--font-extrabold);
+  letter-spacing: -0.01em;
+}
+
+.heading-3 {
+  font-family: var(--font-primary);
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+}
+
+.heading-4 {
+  font-family: var(--font-primary);
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+}
+
+/* ── Section titles ── */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.section-label::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 2px;
+  background: var(--color-primary);
+  border-radius: 2px;
+}
+
+.section-title {
+  font-family: var(--font-secondary);
+  font-size: clamp(1.75rem, 3vw, var(--text-3xl));
+  font-weight: var(--font-bold);
+  color: var(--color-dark);
+  line-height: var(--leading-tight);
+}
+
+.section-subtitle {
+  font-size: var(--text-md);
+  color: var(--color-text-secondary);
+  max-width: 48ch;
+  line-height: var(--leading-loose);
+}
+
+/* ── Text utilities ── */
+.text-primary   { color: var(--color-primary); }
+.text-secondary { color: var(--color-text-secondary); }
+.text-muted     { color: var(--color-text-light); }
+.text-accent    { color: var(--color-accent); }
+.text-white     { color: #fff; }
+.text-dark      { color: var(--color-dark); }
+
+.text-xs   { font-size: var(--text-xs); }
+.text-sm   { font-size: var(--text-sm); }
+.text-base { font-size: var(--text-base); }
+.text-md   { font-size: var(--text-md); }
+.text-lg   { font-size: var(--text-lg); }
+.text-xl   { font-size: var(--text-xl); }
+
+.fw-normal   { font-weight: var(--font-normal); }
+.fw-medium   { font-weight: var(--font-medium); }
+.fw-semibold { font-weight: var(--font-semibold); }
+.fw-bold     { font-weight: var(--font-bold); }
+
+.text-center { text-align: center; }
+.text-right  { text-align: right; }
+
+.italic { font-style: italic; }
+.uppercase { text-transform: uppercase; }
+.line-through { text-decoration: line-through; }
+
+/* Price styling */
+.price {
+  font-size: var(--text-md);
+  font-weight: var(--font-bold);
+  color: var(--color-primary);
+}
+
+.price-original {
+  font-size: var(--text-sm);
+  font-weight: var(--font-normal);
+  color: var(--color-text-light);
+  text-decoration: line-through;
+}
+
+.price-discount {
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  color: var(--color-error);
+  background: rgba(244, 67, 54, 0.1);
+  padding: 2px 6px;
+  border-radius: var(--radius-full);
+}

@@ -1,0 +1,270 @@
+<html lang="vi"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard – LipLux</title>
+    <link rel="stylesheet" href="../assets/css/base/variables.css">
+    <link rel="stylesheet" href="../assets/css/base/reset.css">
+    <link rel="stylesheet" href="../assets/css/base/typography.css">
+    <link rel="stylesheet" href="../assets/css/base/utilities.css">
+    <link rel="stylesheet" href="../assets/css/components/header.css">
+    <link rel="stylesheet" href="../assets/css/components/admin.css">
+    <link rel="stylesheet" href="../assets/css/pages/admin.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body class="admin-body">
+
+    <!-- ADMIN SIDEBAR -->
+    <aside class="admin-sidebar" id="adminSidebar">
+    <div class="admin-sidebar__header">
+        <a href="dashboard.html" class="admin-sidebar__logo">
+            <div class="logo-icon">💄</div>
+            <div class="logo-text">
+                <span class="logo-name">LipLux</span>
+                <span class="logo-tagline">Admin Panel</span>
+            </div>
+        </a>
+        <button class="admin-sidebar__close" id="sidebarClose"><i class="bi bi-x-lg"></i></button>
+    </div>
+
+    <nav class="admin-sidebar__nav">
+        <div class="admin-sidebar__nav-title">Quản lý chung</div>
+
+        <a href="dashboard.html" class="admin-nav-item active">
+            <i class="bi bi-grid-1x2-fill"></i>
+            <span>Dashboard</span>
+        </a>
+
+                <a href="orders.html" class="admin-nav-item ">
+            <i class="bi bi-bag-check-fill"></i>
+            <span>Đơn hàng</span>
+            <span id="adminOrderBadge" class="admin-nav-badge" style="display: block;">1</span>
+        </a>
+
+        <div class="admin-sidebar__nav-title">Sản phẩm &amp; Danh mục</div>
+
+        <a href="products.html" class="admin-nav-item ">
+            <i class="bi bi-box-seam-fill"></i>
+            <span>Sản phẩm</span>
+        </a>
+
+        <a href="categories.html" class="admin-nav-item ">
+            <i class="bi bi-tags-fill"></i>
+            <span>Danh mục</span>
+        </a>
+
+        <a href="brands.html" class="admin-nav-item ">
+            <i class="bi bi-award-fill"></i>
+            <span>Thương hiệu</span>
+        </a>
+
+        <div class="admin-sidebar__nav-title">Tài khoản</div>
+
+        <a href="users.html" class="admin-nav-item ">
+            <i class="bi bi-people-fill"></i>
+            <span>Người dùng</span>
+        </a>
+    </nav>
+
+    <div class="admin-sidebar__footer">
+        <a href="../home.html" class="admin-nav-item admin-nav-item--danger">
+            <i class="bi bi-box-arrow-left"></i>
+            <span>Thoát Admin</span>
+        </a>
+    </div>
+</aside>
+    <!-- ADMIN MAIN CONTENT -->
+    <main class="admin-main">
+
+        <!-- ADMIN HEADER -->
+        <header class="admin-header">
+    <div class="admin-header__left">
+        <button class="admin-header__toggle" id="sidebarToggle">
+            <i class="bi bi-list"></i>
+        </button>
+        <h1 class="admin-header__title">
+            <!-- Dashboard -->
+            Dashboard        </h1>
+    </div>
+
+    <div class="admin-header__right">
+        <!-- <div class="search-bar search-bar--admin">
+            <i class="bi bi-search search-bar__icon"></i>
+            <input type="text" placeholder="Tìm kiếm...">
+        </div>
+
+        <button class="admin-header__btn" title="Thông báo">
+            <i class="bi bi-bell"></i>
+            <span class="admin-header__btn-badge">3</span>
+        </button> -->
+
+        <div class="admin-header__profile">
+                        <img src="../uploads/avatar/avatar_3_1777105057.jpg" alt="Admin" class="admin-profile-img">
+            <div class="admin-profile-info">
+                <span class="admin-profile-name">
+                    Super Admin                </span>
+                <span class="admin-profile-role">
+                    Quản trị viên                </span>
+            </div>
+        </div>
+    </div>
+</header>
+        <!-- ADMIN CONTENT -->
+        <div class="admin-content">
+            
+
+<!-- STATS GRID -->
+<div class="admin-stats-grid">
+    <div class="admin-stat-card">
+        <div class="admin-stat-card__icon" style="color: var(--color-primary); background: rgba(200, 54, 90, 0.1);">
+            <i class="bi bi-currency-dollar"></i>
+        </div>
+        <div class="admin-stat-card__info">
+            <div class="admin-stat-card__label">Tổng doanh thu (Tháng)</div>
+            <div class="admin-stat-card__value" id="statRevenue">2.600.000&nbsp;₫</div>
+            <div class="admin-stat-card__trend positive" id="statRevenueTrend"><i class="bi bi-arrow-up-short"></i> Mới (Tháng đầu)</div>
+        </div>
+    </div>
+
+    <div class="admin-stat-card">
+        <div class="admin-stat-card__icon" style="color: #4CAF50; background: rgba(76, 175, 80, 0.1);">
+            <i class="bi bi-bag-check"></i>
+        </div>
+        <div class="admin-stat-card__info">
+            <div class="admin-stat-card__label">Đơn hàng mới (Tháng)</div>
+            <div class="admin-stat-card__value" id="statNewOrders">2</div>
+            <div class="admin-stat-card__trend positive" id="statOrdersTrend"><i class="bi bi-arrow-up-short"></i> Mới (Tháng đầu)</div>
+        </div>
+    </div>
+
+    <div class="admin-stat-card">
+        <div class="admin-stat-card__icon" style="color: #FF9800; background: rgba(255, 152, 0, 0.1);">
+            <i class="bi bi-box-seam"></i>
+        </div>
+        <div class="admin-stat-card__info">
+            <div class="admin-stat-card__label">Tổng sản phẩm</div>
+            <div class="admin-stat-card__value" id="statTotalProducts">5</div>
+            <div class="admin-stat-card__trend neutral" id="statLowStock"><i class="bi bi-dash"></i> 0 sản phẩm sắp hết hàng</div>
+        </div>
+    </div>
+
+    <div class="admin-stat-card">
+        <div class="admin-stat-card__icon" style="color: #2196F3; background: rgba(33, 150, 243, 0.1);">
+            <i class="bi bi-people"></i>
+        </div>
+        <div class="admin-stat-card__info">
+            <div class="admin-stat-card__label">Khách hàng</div>
+            <div class="admin-stat-card__value" id="statTotalCustomers">2</div>
+            <div class="admin-stat-card__trend positive" id="statNewCustomers"><i class="bi bi-arrow-up-short"></i> 2 khách hàng mới</div>
+        </div>
+    </div>
+</div>
+
+<div class="admin-dashboard-grid">
+    <div class="admin-card" style="grid-column: span 2;">
+        <div class="admin-card__header">
+            <h2 class="admin-card__title">Đơn hàng gần đây</h2>
+            <a href="orders.html" class="admin-card__action">Xem tất cả</a>
+        </div>
+        <div class="admin-card__body">
+            <div class="table-responsive">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Mã ĐH</th>
+                            <th>Khách hàng</th>
+                            <th>Ngày đặt</th>
+                            <th>Tổng tiền</th>
+                            <th>Trạng thái</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recentOrdersTableBody">
+                <tr>
+                    <td><span class="order-id">#LL155608B2</span></td>
+                    <td>
+                        <div class="user-cell">
+                            <img src="../uploads/avatar/avatar_3_1777105057.jpg" alt="Super Admin">
+                            <span>Super Admin</span>
+                        </div>
+                    </td>
+                    <td>24/4/2026</td>
+                    <td>1.150.000&nbsp;₫</td>
+                    <td><span class="status-badge status-badge--completed">Hoàn thành</span></td>
+                    <td>
+                        <div class="table-actions">
+                            <button class="action-btn view-btn" title="Xem chi tiết" data-id="2" data-code="LL155608B2">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td><span class="order-id">#LL46805B5D</span></td>
+                    <td>
+                        <div class="user-cell">
+                            <img src="../uploads/avatar/avatar_3_1777105057.jpg" alt="Super Admin">
+                            <span>Super Admin</span>
+                        </div>
+                    </td>
+                    <td>24/4/2026</td>
+                    <td>1.450.000&nbsp;₫</td>
+                    <td><span class="status-badge status-badge--confirmed">Đã xác nhận</span></td>
+                    <td>
+                        <div class="table-actions">
+                            <button class="action-btn view-btn" title="Xem chi tiết" data-id="1" data-code="LL46805B5D">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOP SELLING PRODUCTS -->
+    <div class="admin-card">
+        <div class="admin-card__header">
+            <h2 class="admin-card__title">Sản phẩm bán chạy</h2>
+        </div>
+        <div class="admin-card__body">
+            <div class="top-products-list" id="topSellingProductsList">
+                <div class="top-product-item">
+                    <img src="../uploads/products/color_69e9d1e0088ea_0.jpg" alt="Son Chanel Rouge Allure Velvet" class="top-product-img">
+                    <div class="top-product-info">
+                        <div class="top-product-name">Son Chanel Rouge Allure Velvet</div>
+                        <div class="top-product-brand">Chanel</div>
+                    </div>
+                    <div class="top-product-sales">
+                        <div class="sales-count">1</div>
+                        <div class="sales-label">Đã bán</div>
+                    </div>
+                </div>
+            
+                <div class="top-product-item">
+                    <img src="../uploads/products/color_69eb0f300fff8_0.jpg" alt="Son Chanel Rouge Coco Baume" class="top-product-img">
+                    <div class="top-product-info">
+                        <div class="top-product-name">Son Chanel Rouge Coco Baume</div>
+                        <div class="top-product-brand">Chanel</div>
+                    </div>
+                    <div class="top-product-sales">
+                        <div class="sales-count">1</div>
+                        <div class="sales-label">Đã bán</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+    </main>
+
+    <!-- <script type="module" src="../assets/js/admin/main.js"></script>
+    <script type="module" src="../assets/js/admin/dashboard.module.js"></script> -->
+
+
+<div class="admin toast-container"></div></body></html>

@@ -1,0 +1,476 @@
+/* --- Toast Notifications --- */
+.admin.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+    /* Allow clicks through empty areas */
+}
+
+.admin .toast {
+    background: white;
+    box-shadow: var(--shadow-xl);
+    border-radius: var(--radius-md);
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 300px;
+    max-width: 450px;
+    pointer-events: auto;
+    border-left: 4px solid var(--color-primary);
+    animation: slideInRight 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.3s ease;
+}
+
+.admin .toast.hiding {
+    animation: fadeOutRight 0.3s ease forwards;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOutRight {
+    to {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+.admin .toast-icon {
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+}
+
+.admin .toast-content {
+    flex: 1;
+}
+
+.admin .toast-title {
+    margin: 0;
+    font-weight: 600;
+    font-size: 0.938rem;
+    color: var(--color-text);
+}
+
+.admin .toast-message {
+    margin: 2px 0 0 0;
+    font-size: 0.813rem;
+    color: var(--color-text-secondary);
+}
+
+.admin .toast-close {
+    cursor: pointer;
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+    padding: 4px;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.admin .toast-close:hover {
+    background: var(--color-bg-alt);
+    color: var(--color-text);
+}
+
+/* Toast Variants */
+.admin .toast-success {
+    border-left-color: var(--color-success);
+}
+
+.admin .toast-success .toast-icon {
+    color: var(--color-success);
+}
+
+.admin .toast-error {
+    border-left-color: var(--color-error);
+}
+
+.admin .toast-error .toast-icon {
+    color: var(--color-error);
+}
+
+.admin .toast-warning {
+    border-left-color: var(--color-warning);
+}
+
+.admin .toast-warning .toast-icon {
+    color: var(--color-warning);
+}
+
+.admin .toast-info {
+    border-left-color: var(--color-primary-light);
+}
+
+.admin .toast-info .toast-icon {
+    color: var(--color-primary-light);
+}
+
+
+
+/* Pagination */
+.pagination-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4);
+}
+
+.pagination-info {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.pagination-info strong {
+    color: var(--text-main);
+}
+
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.pagination-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: white;
+    color: var(--color-text);
+    cursor: pointer;
+    font-size: 0.813rem;
+    transition: all var(--transition-fast);
+}
+
+.pagination-btn:hover:not(:disabled) {
+    border-color: var(--color-primary);
+    background: var(--color-bg-alt);
+}
+
+.pagination-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination-btn.active {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: white;
+}
+
+.pagination-btn.active:hover {
+    border-color: var(--color-primary);
+    background: var(--color-primary-dark);
+}
+
+.pagination-ellipsis {
+    padding: 0 8px;
+    color: var(--text-muted);
+}
+
+
+
+/* --- Confirm Modal --- */
+/* Reuse .modal and .modal-content from css/base.css or components.css if available.
+   Wait, components.css doesn't have modal but project-detail.html has inline modal styles.
+   We should standardize modal styles here for GLOBAL use.
+*/
+
+.global-modal {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: var(--z-modal);
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-base);
+}
+
+.global-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.global-modal .modal-box {
+    background: var(--color-surface);
+    border-radius: var(--radius-xl);
+    width: 90%;
+    max-width: 420px;
+    box-shadow: var(--shadow-xl);
+    transform: scale(0.95);
+    transition: transform var(--transition-bounce);
+    overflow: hidden;
+}
+
+.global-modal.active .modal-box {
+    transform: scale(1);
+}
+
+.confirm-icon-wrapper {
+    display: flex;
+    justify-content: center;
+    padding-top: var(--space-8);
+    margin-bottom: var(--space-4);
+}
+
+.confirm-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+}
+
+.confirm-icon.warning {
+    background: var(--color-bg-alt);
+    color: var(--color-warning);
+}
+
+.confirm-icon.danger {
+    background: var(--color-bg-alt);
+    color: var(--color-error);
+}
+
+.confirm-icon.info {
+    background: var(--color-bg-alt);
+    color: var(--color-primary);
+}
+
+.confirm-content {
+    padding: 0 var(--space-8) var(--space-8);
+    text-align: center;
+}
+
+.confirm-title {
+    margin: 0 0 var(--space-2);
+    font-size: var(--text-lg);
+    font-weight: var(--font-bold);
+    color: var(--color-text);
+}
+
+.confirm-message {
+    margin: 0;
+    color: var(--color-text-secondary);
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+}
+
+.confirm-actions {
+    padding: var(--space-6);
+    background: var(--color-surface-2);
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+}
+
+.confirm-actions button {
+    min-width: 100px;
+}
+
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: 0.625rem 1.25rem;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    border: 1px solid transparent;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-danger {
+    background: var(--color-error);
+    color: var(--color-surface);
+}
+
+
+
+
+/* --- Loading Overlay --- */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(4px);
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid var(--color-surface-2);
+    border-top: 4px solid var(--color-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: var(--spacing-md);
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-text {
+    font-weight: 600;
+    color: var(--text-main);
+    font-size: 1rem;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+
+.status-badge--active {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: bold;
+    background-color: rgba(76, 175, 80, 0.1);
+    color: #4CAF50;
+}
+
+.status-badge--draft {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: bold;
+    background-color: rgba(255, 152, 0, 0.1);
+    color: #FF9800;
+}
+
+.status-badge--imported {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: bold;
+    background-color: rgba(76, 175, 80, 0.1);
+    color: #4CAF50;
+}
+
+.status-badge--cancelled {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: bold;
+    background-color: rgba(255, 152, 0, 0.1);
+    color: #FF9800;
+}
+
+/* --- Toggle Switch --- */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 22px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--color-border);
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+input:checked + .slider {
+    background-color: var(--color-success, #4CAF50);
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px var(--color-success, #4CAF50);
+}
+
+input:checked + .slider:before {
+    transform: translateX(18px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}

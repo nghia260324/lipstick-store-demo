@@ -1,0 +1,807 @@
+<html lang="vi"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard – LipLux</title>
+    <link rel="stylesheet" href="../assets/css/base/variables.css">
+    <link rel="stylesheet" href="../assets/css/base/reset.css">
+    <link rel="stylesheet" href="../assets/css/base/typography.css">
+    <link rel="stylesheet" href="../assets/css/base/utilities.css">
+    <link rel="stylesheet" href="../assets/css/components/header.css">
+    <link rel="stylesheet" href="../assets/css/components/admin.css">
+    <link rel="stylesheet" href="../assets/css/pages/admin.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body class="admin-body">
+
+    <!-- ADMIN SIDEBAR -->
+    <aside class="admin-sidebar" id="adminSidebar">
+    <div class="admin-sidebar__header">
+        <a href="dashboard.html" class="admin-sidebar__logo">
+            <div class="logo-icon">💄</div>
+            <div class="logo-text">
+                <span class="logo-name">LipLux</span>
+                <span class="logo-tagline">Admin Panel</span>
+            </div>
+        </a>
+        <button class="admin-sidebar__close" id="sidebarClose"><i class="bi bi-x-lg"></i></button>
+    </div>
+
+    <nav class="admin-sidebar__nav">
+        <div class="admin-sidebar__nav-title">Quản lý chung</div>
+
+        <a href="dashboard.html" class="admin-nav-item ">
+            <i class="bi bi-grid-1x2-fill"></i>
+            <span>Dashboard</span>
+        </a>
+
+                <a href="orders.html" class="admin-nav-item ">
+            <i class="bi bi-bag-check-fill"></i>
+            <span>Đơn hàng</span>
+            <span id="adminOrderBadge" class="admin-nav-badge" style="display: block;">1</span>
+        </a>
+
+        <div class="admin-sidebar__nav-title">Sản phẩm &amp; Danh mục</div>
+
+        <a href="products.html" class="admin-nav-item ">
+            <i class="bi bi-box-seam-fill"></i>
+            <span>Sản phẩm</span>
+        </a>
+
+        <a href="categories.html" class="admin-nav-item ">
+            <i class="bi bi-tags-fill"></i>
+            <span>Danh mục</span>
+        </a>
+
+        <a href="brands.html" class="admin-nav-item ">
+            <i class="bi bi-award-fill"></i>
+            <span>Thương hiệu</span>
+        </a>
+
+        <div class="admin-sidebar__nav-title">Tài khoản</div>
+
+        <a href="users.html" class="admin-nav-item ">
+            <i class="bi bi-people-fill"></i>
+            <span>Người dùng</span>
+        </a>
+    </nav>
+
+    <div class="admin-sidebar__footer">
+        <a href="../home.html" class="admin-nav-item admin-nav-item--danger">
+            <i class="bi bi-box-arrow-left"></i>
+            <span>Thoát Admin</span>
+        </a>
+    </div>
+</aside>
+    <!-- ADMIN MAIN CONTENT -->
+    <main class="admin-main">
+
+        <!-- ADMIN HEADER -->
+        <header class="admin-header">
+    <div class="admin-header__left">
+        <button class="admin-header__toggle" id="sidebarToggle">
+            <i class="bi bi-list"></i>
+        </button>
+        <h1 class="admin-header__title">
+            <!-- Dashboard -->
+            Cập nhật Sản phẩm        </h1>
+    </div>
+
+    <div class="admin-header__right">
+        <!-- <div class="search-bar search-bar--admin">
+            <i class="bi bi-search search-bar__icon"></i>
+            <input type="text" placeholder="Tìm kiếm...">
+        </div>
+
+        <button class="admin-header__btn" title="Thông báo">
+            <i class="bi bi-bell"></i>
+            <span class="admin-header__btn-badge">3</span>
+        </button> -->
+
+        <div class="admin-header__profile">
+                        <img src="../uploads/avatar/avatar_3_1777105057.jpg" alt="Admin" class="admin-profile-img">
+            <div class="admin-profile-info">
+                <span class="admin-profile-name">
+                    Super Admin                </span>
+                <span class="admin-profile-role">
+                    Quản trị viên                </span>
+            </div>
+        </div>
+    </div>
+</header>
+        <!-- ADMIN CONTENT -->
+        <div class="admin-content">
+            
+<style>
+    /* Tabs */
+    .admin-tabs {
+        display: flex;
+        gap: var(--space-4);
+        border-bottom: 1px solid var(--color-border-light);
+        margin-bottom: var(--space-5);
+    }
+
+    .admin-tab {
+        padding: var(--space-3) var(--space-4);
+        font-weight: var(--font-bold);
+        color: var(--color-text-secondary);
+        cursor: pointer;
+        border-bottom: 2px solid transparent;
+        transition: all var(--transition-fast);
+        font-size: var(--text-md);
+    }
+
+    .admin-tab:hover {
+        color: var(--color-primary);
+    }
+
+    .admin-tab.active {
+        color: var(--color-primary);
+        border-bottom-color: var(--color-primary);
+    }
+
+    .tab-content {
+        display: none;
+    }
+
+    .tab-content.active {
+        display: block;
+        animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Form Styles */
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-5);
+    }
+
+    .form-group {
+        margin-bottom: var(--space-4);
+    }
+
+    .form-group.full-width {
+        grid-column: span 2;
+    }
+
+    .form-label {
+        display: block;
+        font-size: var(--text-sm);
+        font-weight: var(--font-bold);
+        color: var(--color-text-secondary);
+        margin-bottom: var(--space-2);
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+        font-size: var(--text-sm);
+        outline: none;
+        transition: border-color var(--transition-fast);
+        font-family: inherit;
+    }
+
+    .form-control:focus {
+        border-color: var(--color-primary);
+    }
+
+    textarea.form-control {
+        resize: vertical;
+        min-height: 120px;
+    }
+
+
+    /* Layout specific to edit page */
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: var(--space-5);
+    }
+
+    .page-title {
+        font-size: var(--text-2xl);
+        font-weight: var(--font-bold);
+        color: var(--color-dark);
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+    }
+
+    .back-btn {
+        color: var(--color-text-secondary);
+        font-size: 24px;
+        transition: color var(--transition-fast);
+    }
+
+    .back-btn:hover {
+        color: var(--color-primary);
+    }
+
+    .empty-state {
+        padding: var(--space-10) var(--space-5);
+        text-align: center;
+        color: var(--color-text-secondary);
+        background: var(--color-bg-alt);
+        border-radius: var(--radius-lg);
+        border: 1px dashed var(--color-border);
+    }
+
+    /* .empty-state i {
+        font-size: 48px;
+        color: var(--color-border);
+        margin-bottom: var(--space-3);
+    } */
+</style>
+
+<!-- Page Header -->
+<div class="page-header">
+    <div class="page-title">
+        <a href="products.html" class="back-btn" title="Quay lại"><i class="bi bi-arrow-left-short"></i></a>
+        <span id="displayProductName">Son Chanel Rouge Coco Baume</span>
+    </div>
+
+</div>
+
+<!-- Main Content Card -->
+<div class="admin-card">
+    <div class="admin-card__body">
+
+        <!-- TABS -->
+        <div class="admin-tabs">
+            <div class="admin-tab active" data-target="tab-basic">Thông tin cơ bản</div>
+            <div class="admin-tab" data-target="tab-colors">Màu sắc</div>
+            <div class="admin-tab" data-target="tab-stock">Nhập kho</div>
+        </div>
+
+        <!-- TAB CONTENT: BASIC INFO -->
+        <div class="tab-content active" id="tab-basic">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4);">
+                <h3 style="font-size: var(--text-lg); font-weight: var(--font-bold); color: var(--color-dark);">
+                    Cập nhật Thông tin cơ bản</h3>
+                <button id="btnSaveBasicInfo" class="btn-primary"><i class="bi bi-save"></i> Lưu thông tin</button>
+            </div>
+            <form id="basicInfoForm">
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label class="form-label">Tên sản phẩm *</label>
+                        <input type="text" id="productName" name="product_name" class="form-control" placeholder="Nhập tên sản phẩm..." required="">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Danh mục *</label>
+                        <select id="productCategory" name="category_id" class="form-control" required=""><option value="">Chọn danh mục</option><option value="13">Son dưỡng</option><option value="14">Son hũ</option><option value="15">Son kem</option><option value="16">Son lì</option><option value="17">Son thỏi</option></select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Thương hiệu *</label>
+                        <select id="productBrand" name="brand_id" class="form-control" required=""><option value="">Chọn thương hiệu</option><option value="2">Chanel</option><option value="1">Dior</option><option value="3">Gucci</option><option value="4">Hermès</option></select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Trạng thái</label>
+                        <select id="productStatus" name="status" class="form-control">
+                            <option value="1">Đang bán (Hiển thị)</option>
+                            <option value="0">Ngừng bán (Ẩn)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label class="form-label">Mô tả sản phẩm</label>
+                        <textarea id="productDescription" name="description" class="form-control" placeholder="Nhập mô tả chi tiết..."></textarea>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label class="form-label">Thành phần (Ingredients)</label>
+                        <textarea id="productIngredients" name="ingredients" class="form-control" placeholder="Nhập thành phần..."></textarea>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label class="form-label">Hướng dẫn sử dụng</label>
+                        <textarea id="productHowToUse" name="how_to_use" class="form-control" placeholder="Nhập hướng dẫn..."></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- TAB CONTENT: COLORS -->
+        <div class="tab-content" id="tab-colors">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4);">
+                <h3 style="font-size: var(--text-lg); font-weight: var(--font-bold); color: var(--color-dark);">
+                    Danh sách Phân loại màu</h3>
+                <button id="btnAddColorHeader" class="btn-primary" data-modal-open="colorModalAdd" style="display: block;"><i class="bi bi-plus-lg"></i> Thêm màu mới</button>
+            </div>
+
+            <div id="colorListContainer">
+            <div class="table-responsive">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Màu sắc</th>
+                            <th>Hình ảnh</th>
+                            <th>Giá bán</th>
+                            <th>Tồn kho</th>
+                            <th>Trạng thái</th>
+                            <th style="text-align: right;">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                <tr>
+                    <td>
+                        <div style="display: flex; align-items: center; gap: var(--space-2);">
+                            <span style="display: inline-block; width: 20px; height: 20px; border-radius: 50%; background-color: #9F413F; border: 1px solid var(--color-border);"></span>
+                            <span style="font-weight: var(--font-medium); color: var(--color-dark);">Hồng Đất</span>
+                        </div>
+                    </td>
+                    <td>
+                        <img src="../uploads/products/color_69eb0f300fff8_0.jpg" alt="Hồng Đất" style="width: 40px; height: 40px; object-fit: cover; border-radius: var(--radius-sm); border: 1px solid var(--color-border-light);">
+                    </td>
+                    <td>1.450.000&nbsp;₫</td>
+                    <td>99</td>
+                    <td><span class="status-badge status-badge--active">Đang bán</span></td>
+                    <td>
+                        <div class="table-actions" style="justify-content: flex-end; display: flex; gap: 8px;">
+                            <button class="action-btn" title="Chỉnh sửa" data-id="5">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                            <button class="action-btn" title="Xóa" data-id="5" style="cursor: not-allowed; color: #ccc;" disabled="">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>
+                        <div style="display: flex; align-items: center; gap: var(--space-2);">
+                            <span style="display: inline-block; width: 20px; height: 20px; border-radius: 50%; background-color: #E51C62; border: 1px solid var(--color-border);"></span>
+                            <span style="font-weight: var(--font-medium); color: var(--color-dark);">Hồng Đậm</span>
+                        </div>
+                    </td>
+                    <td>
+                        <img src="../uploads/products/color_69eb0f6b6029e_0.jpg" alt="Hồng Đậm" style="width: 40px; height: 40px; object-fit: cover; border-radius: var(--radius-sm); border: 1px solid var(--color-border-light);">
+                    </td>
+                    <td>1.450.000&nbsp;₫</td>
+                    <td>100</td>
+                    <td><span class="status-badge status-badge--active">Đang bán</span></td>
+                    <td>
+                        <div class="table-actions" style="justify-content: flex-end; display: flex; gap: 8px;">
+                            <button class="action-btn" title="Chỉnh sửa" data-id="6">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                            <button class="action-btn" title="Xóa" data-id="6" style="cursor: not-allowed; color: #ccc;" disabled="">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>
+                        <div style="display: flex; align-items: center; gap: var(--space-2);">
+                            <span style="display: inline-block; width: 20px; height: 20px; border-radius: 50%; background-color: #E20725; border: 1px solid var(--color-border);"></span>
+                            <span style="font-weight: var(--font-medium); color: var(--color-dark);">Đỏ San Hô</span>
+                        </div>
+                    </td>
+                    <td>
+                        <img src="../uploads/products/color_69eb0f8c7511f_0.jpg" alt="Đỏ San Hô" style="width: 40px; height: 40px; object-fit: cover; border-radius: var(--radius-sm); border: 1px solid var(--color-border-light);">
+                    </td>
+                    <td>1.450.000&nbsp;₫</td>
+                    <td>100</td>
+                    <td><span class="status-badge status-badge--active">Đang bán</span></td>
+                    <td>
+                        <div class="table-actions" style="justify-content: flex-end; display: flex; gap: 8px;">
+                            <button class="action-btn" title="Chỉnh sửa" data-id="7">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                            <button class="action-btn" title="Xóa" data-id="7" style="cursor: not-allowed; color: #ccc;" disabled="">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>
+                        <div style="display: flex; align-items: center; gap: var(--space-2);">
+                            <span style="display: inline-block; width: 20px; height: 20px; border-radius: 50%; background-color: #931D33; border: 1px solid var(--color-border);"></span>
+                            <span style="font-weight: var(--font-medium); color: var(--color-dark);">Đỏ Đất</span>
+                        </div>
+                    </td>
+                    <td>
+                        <img src="../uploads/products/color_69eb0ff46b7c2_0.jpg" alt="Đỏ Đất" style="width: 40px; height: 40px; object-fit: cover; border-radius: var(--radius-sm); border: 1px solid var(--color-border-light);">
+                    </td>
+                    <td>1.450.000&nbsp;₫</td>
+                    <td>100</td>
+                    <td><span class="status-badge status-badge--active">Đang bán</span></td>
+                    <td>
+                        <div class="table-actions" style="justify-content: flex-end; display: flex; gap: 8px;">
+                            <button class="action-btn" title="Chỉnh sửa" data-id="8">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                            <button class="action-btn" title="Xóa" data-id="8" style="cursor: not-allowed; color: #ccc;" disabled="">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+
+        <!-- TAB CONTENT: STOCK IMPORTS -->
+        <div class="tab-content" id="tab-stock">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4);">
+                <h3 style="font-size: var(--text-lg); font-weight: var(--font-bold); color: var(--color-dark);">Lịch sử
+                    Nhập kho</h3>
+                <button id="btnCreateStockHeader" class="btn-primary" style="display: block;">
+                    <i class="bi bi-plus-lg"></i> Tạo phiếu nhập mới
+                </button>
+            </div>
+
+            <div id="stockListContainer">
+            <div class="table-responsive">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Mã phiếu</th>
+                            <th>Ngày nhập</th>
+                            <th>Phân loại màu</th>
+                            <th>Số lượng</th>
+                            <th>Tồn kho</th>
+                            <th>Giá nhập</th>
+                            <th>Trạng thái</th>
+                            <th style="text-align: right;">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                <tr>
+                    <td><span style="font-family: monospace; font-weight: bold;">#5</span></td>
+                    <td>24/4/2026</td>
+                    <td>Hồng Đất</td>
+                    <td><strong>100</strong></td>
+                    <td><strong>99</strong></td>
+                    <td>1.000.000&nbsp;₫</td>
+                    <td><span class="status-badge status-badge--imported">Đã nhập kho</span></td>
+                    <td>
+                        <div class="table-actions" style="justify-content: flex-end; display: flex; gap: 8px;">
+                            <button disabled="" class="action-btn" title="Sửa phiếu" data-id="5" data-action="stock-edit" style="cursor: not-allowed; color: #ccc;">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                            <button disabled="" class="action-btn" title="Xóa phiếu" data-id="5" data-action="stock-delete" style="cursor: not-allowed; color: #ccc;">
+                                <i class="bi bi-trash"></i>
+                            </button>
+        
+                        </div>
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td><span style="font-family: monospace; font-weight: bold;">#8</span></td>
+                    <td>24/4/2026</td>
+                    <td>Đỏ Đất</td>
+                    <td><strong>100</strong></td>
+                    <td><strong>100</strong></td>
+                    <td>1.000.000&nbsp;₫</td>
+                    <td><span class="status-badge status-badge--imported">Đã nhập kho</span></td>
+                    <td>
+                        <div class="table-actions" style="justify-content: flex-end; display: flex; gap: 8px;">
+                            <button disabled="" class="action-btn" title="Sửa phiếu" data-id="8" data-action="stock-edit" style="cursor: not-allowed; color: #ccc;">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                            <button disabled="" class="action-btn" title="Xóa phiếu" data-id="8" data-action="stock-delete" style="cursor: not-allowed; color: #ccc;">
+                                <i class="bi bi-trash"></i>
+                            </button>
+        
+                        </div>
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td><span style="font-family: monospace; font-weight: bold;">#7</span></td>
+                    <td>24/4/2026</td>
+                    <td>Đỏ San Hô</td>
+                    <td><strong>100</strong></td>
+                    <td><strong>100</strong></td>
+                    <td>1.000.000&nbsp;₫</td>
+                    <td><span class="status-badge status-badge--imported">Đã nhập kho</span></td>
+                    <td>
+                        <div class="table-actions" style="justify-content: flex-end; display: flex; gap: 8px;">
+                            <button disabled="" class="action-btn" title="Sửa phiếu" data-id="7" data-action="stock-edit" style="cursor: not-allowed; color: #ccc;">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                            <button disabled="" class="action-btn" title="Xóa phiếu" data-id="7" data-action="stock-delete" style="cursor: not-allowed; color: #ccc;">
+                                <i class="bi bi-trash"></i>
+                            </button>
+        
+                        </div>
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td><span style="font-family: monospace; font-weight: bold;">#6</span></td>
+                    <td>24/4/2026</td>
+                    <td>Hồng Đậm</td>
+                    <td><strong>100</strong></td>
+                    <td><strong>100</strong></td>
+                    <td>1.000.000&nbsp;₫</td>
+                    <td><span class="status-badge status-badge--imported">Đã nhập kho</span></td>
+                    <td>
+                        <div class="table-actions" style="justify-content: flex-end; display: flex; gap: 8px;">
+                            <button disabled="" class="action-btn" title="Sửa phiếu" data-id="6" data-action="stock-edit" style="cursor: not-allowed; color: #ccc;">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                            <button disabled="" class="action-btn" title="Xóa phiếu" data-id="6" data-action="stock-delete" style="cursor: not-allowed; color: #ccc;">
+                                <i class="bi bi-trash"></i>
+                            </button>
+        
+                        </div>
+                    </td>
+                </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- COLOR MODAL -->
+<div class="modal-overlay" id="colorModalAdd">
+    <div class="modal-content" style="max-width: 600px;">
+        <div class="modal-header">
+            <div class="modal-title" id="colorModalTitle">Thêm Màu sắc mới</div>
+            <button class="modal-close" data-modal-close="">×</button>
+        </div>
+        <div class="modal-body">
+            <form id="colorForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label">Tên màu *</label>
+                        <input type="text" name="color_name" class="form-control" placeholder="VD: Đỏ thuần (999)" required="">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Mã màu Hex</label>
+                        <div style="display: flex; gap: 8px;">
+                            <input type="color" id="colorPicker" class="form-control" style="width: 50px; padding: 2px; cursor: pointer;" value="#A0254A">
+                            <input type="text" id="colorHex" name="hex_code" class="form-control" placeholder="#A0254A" style="flex: 1;">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Giá bán (VND) *</label>
+                        <input type="number" name="selling_price" class="form-control" placeholder="VD: 1050000" required="">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Trạng thái</label>
+                        <select name="status" class="form-control">
+                            <option value="1" selected="">Đang bán (Hiển thị)</option>
+                            <option value="0">Ngừng bán (Ẩn)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label class="form-label">Hình ảnh minh họa</label>
+                        <input type="file" id="colorImageInput" multiple="" accept="image/*" style="display: none;">
+                        <div id="colorImageDropzone" style="border: 2px dashed var(--color-border); border-radius: var(--radius-md); padding: var(--space-4); text-align: center; background: var(--color-bg-alt); cursor: pointer;">
+                            <i class="bi bi-cloud-arrow-up" style="font-size: 32px; color: var(--color-primary);"></i>
+                            <p style="margin-top: 8px; font-size: var(--text-sm); color: var(--color-text-secondary);">
+                                Nhấn vào đây để tải lên</p>
+                            <p style="font-size: 11px; color: var(--color-text-light); margin-top: 4px;">Hỗ trợ JPG,
+                                PNG. Tối đa
+                                2MB.</p>
+                        </div>
+
+                        <!-- Selected Images Preview -->
+                        <div id="colorImagePreview" style="display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-3);">
+                            <!-- Previews will be rendered here -->
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-secondary" data-modal-close="">Hủy</button>
+            <button id="btnColorAddSubmit" class="btn-primary">Lưu Màu sắc</button>
+        </div>
+    </div>
+</div>
+
+<!-- EDIT COLOR MODAL -->
+<div class="modal-overlay" id="colorModalEdit">
+    <div class="modal-content" style="max-width: 600px;">
+        <div class="modal-header">
+            <div class="modal-title">Cập nhật Màu sắc</div>
+            <button class="modal-close" data-modal-close="">×</button>
+        </div>
+        <div class="modal-body">
+            <form id="editColorForm">
+                <input type="hidden" name="color_id" id="editColorId">
+                <input type="hidden" name="temp_id" id="editTempId">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label">Tên màu *</label>
+                        <input type="text" id="editColorName" name="color_name" class="form-control" placeholder="VD: Đỏ thuần (999)" required="">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Mã màu Hex</label>
+                        <div style="display: flex; gap: 8px;">
+                            <input type="color" id="editColorPicker" class="form-control" style="width: 50px; padding: 2px; cursor: pointer;" value="#A0254A">
+                            <input type="text" id="editColorHex" name="hex_code" class="form-control" placeholder="#A0254A" style="flex: 1;">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Giá bán (VND) *</label>
+                        <input type="number" id="editSellingPrice" name="selling_price" class="form-control" placeholder="VD: 1050000" required="">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Trạng thái</label>
+                        <select id="editColorStatus" name="status" class="form-control">
+                            <option value="1">Đang bán (Hiển thị)</option>
+                            <option value="0">Ngừng bán (Ẩn)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label class="form-label">Hình ảnh minh họa</label>
+                        <input type="file" id="editColorImageInput" multiple="" accept="image/*" style="display: none;">
+                        <div id="editColorImageDropzone" style="border: 2px dashed var(--color-border); border-radius: var(--radius-md); padding: var(--space-4); text-align: center; background: var(--color-bg-alt); cursor: pointer;">
+                            <i class="bi bi-cloud-arrow-up" style="font-size: 32px; color: var(--color-primary);"></i>
+                            <p style="margin-top: 8px; font-size: var(--text-sm); color: var(--color-text-secondary);">
+                                Nhấn vào đây để thêm ảnh mới</p>
+                        </div>
+
+                        <!-- Selected Images Preview -->
+                        <div id="editColorImagePreview" style="display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-3);">
+                            <!-- Previews will be rendered here -->
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-secondary" data-modal-close="">Hủy</button>
+            <button id="btnColorEditSubmit" class="btn-primary">Cập nhật thay đổi</button>
+        </div>
+    </div>
+</div>
+
+<!-- STOCK IMPORT MODAL ADD -->
+<div class="modal-overlay" id="stockModalAdd">
+    <div class="modal-content" style="max-width: 500px;">
+        <div class="modal-header">
+            <div class="modal-title">Tạo Phiếu Nhập Kho</div>
+            <button class="modal-close" data-modal-close="">×</button>
+        </div>
+        <div class="modal-body">
+            <form id="stockFormAdd">
+                <div class="form-grid" style="display: flex; flex-direction: column; gap: var(--space-4);">
+                    <div class="form-group" style="margin: 0;">
+                        <label class="form-label">Phân loại màu *</label>
+                        <select name="color_id" class="form-control stock-color-select" required=""><option value="">Chọn màu sắc...</option><option value="5">Hồng Đất</option><option value="6">Hồng Đậm</option><option value="7">Đỏ San Hô</option><option value="8">Đỏ Đất</option></select>
+                    </div>
+
+                    <div class="form-group" style="margin: 0;">
+                        <label class="form-label">Ngày nhập kho *</label>
+                        <input type="date" name="import_date" class="form-control" required="">
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);">
+                        <div class="form-group" style="margin: 0;">
+                            <label class="form-label">Số lượng nhập *</label>
+                            <input type="number" name="quantity" class="form-control" placeholder="VD: 50" required="" min="1">
+                        </div>
+
+                        <div class="form-group" style="margin: 0;">
+                            <label class="form-label">Giá nhập (VNĐ) *</label>
+                            <input type="number" name="import_price" class="form-control" placeholder="VD: 550000" required="">
+                        </div>
+                    </div>
+
+                    <!-- Status removed for creation, defaults to Draft -->
+                    <input type="hidden" name="status" value="0">
+
+                    <div class="form-group" style="margin: 0;">
+                        <label class="form-label">Ghi chú</label>
+                        <textarea name="note" class="form-control" placeholder="Ghi chú về lô hàng nhập..." style="min-height: 80px;"></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-secondary" data-modal-close="">Hủy</button>
+            <button id="btnStockAddSubmit" class="btn-primary">Lưu Phiếu Nhập</button>
+        </div>
+    </div>
+</div>
+
+<!-- STOCK IMPORT MODAL EDIT -->
+<div class="modal-overlay" id="stockModalEdit">
+    <div class="modal-content" style="max-width: 500px;">
+        <div class="modal-header">
+            <div class="modal-title">Chỉnh Sửa Phiếu Nhập</div>
+            <button class="modal-close" data-modal-close="">×</button>
+        </div>
+        <div class="modal-body">
+            <form id="stockFormEdit">
+                <input type="hidden" name="stock_id" id="editStockId">
+                <div class="form-grid" style="display: flex; flex-direction: column; gap: var(--space-4);">
+                    <div class="form-group" style="margin: 0;">
+                        <label class="form-label">Phân loại màu *</label>
+                        <select name="color_id" id="editStockColor" class="form-control stock-color-select" required=""><option value="">Chọn màu sắc...</option><option value="5">Hồng Đất</option><option value="6">Hồng Đậm</option><option value="7">Đỏ San Hô</option><option value="8">Đỏ Đất</option></select>
+                    </div>
+
+                    <div class="form-group" style="margin: 0;">
+                        <label class="form-label">Ngày nhập kho *</label>
+                        <input type="date" name="import_date" id="editStockDate" class="form-control" required="">
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);">
+                        <div class="form-group" style="margin: 0;">
+                            <label class="form-label">Số lượng nhập *</label>
+                            <input type="number" name="quantity" id="editStockQuantity" class="form-control" required="" min="1">
+                        </div>
+
+                        <div class="form-group" style="margin: 0;">
+                            <label class="form-label">Giá nhập (VNĐ) *</label>
+                            <input type="number" name="import_price" id="editStockPrice" class="form-control" required="">
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin: 0;">
+                        <label class="form-label">Trạng thái</label>
+                        <select name="status" id="editStockStatus" class="form-control">
+                            <option value="0">Bản nháp</option>
+                            <option value="1">Đã nhập kho</option>
+                            <option value="2">Đã hủy</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" style="margin: 0;">
+                        <label class="form-label">Ghi chú</label>
+                        <textarea name="note" id="editStockNote" class="form-control" style="min-height: 80px;"></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-secondary" data-modal-close="">Hủy</button>
+            <button id="btnStockEditSubmit" class="btn-primary">Cập nhật Phiếu Nhập</button>
+        </div>
+    </div>
+</div>
+
+        </div>
+    </main>
+
+    <script type="module" src="../assets/js/admin/main.js"></script>
+    <script type="module" src="../assets/js/admin/product-update.module.js"></script>
+
+
+<div class="admin toast-container"></div></body></html>

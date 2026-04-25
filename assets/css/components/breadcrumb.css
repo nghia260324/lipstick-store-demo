@@ -1,0 +1,32 @@
+/* ===========================
+   BREADCRUMB COMPONENT
+   =========================== */
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  padding: var(--space-4) 0;
+}
+
+.breadcrumb__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.breadcrumb__item a {
+  color: var(--color-text-secondary);
+  transition: color var(--transition-fast);
+}
+.breadcrumb__item a:hover { color: var(--color-primary); }
+
+.breadcrumb__sep { font-size: 10px; opacity: 0.5; }
+
+.breadcrumb__item:last-child {
+  color: var(--color-text);
+  font-weight: var(--font-medium);
+}

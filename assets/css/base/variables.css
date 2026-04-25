@@ -1,0 +1,106 @@
+/* ===========================
+   CSS CUSTOM PROPERTIES (VARIABLES)
+   =========================== */
+
+:root {
+  /* ── Color Palette ── */
+  --color-primary:        #C8365A;   /* Deep rose */
+  --color-primary-light:  #E8557A;
+  --color-primary-dark:   #A0254A;
+  --color-secondary:      #F5C6D0;   /* Blush */
+  --color-accent:         #C9A55A;   /* Gold */
+  --color-accent-dark:    #A8874A;
+
+  /* Backgrounds */
+  --color-bg:             #FAFAFA;
+  --color-bg-alt:         #FFF5F7;
+  --color-surface:        #FFFFFF;
+  --color-surface-2:      #F8F2F4;
+  --color-dark:           #1A1A2E;
+  --color-dark-2:         #2C2C3E;
+
+  /* Text */
+  --color-text:           #1A1A1A;
+  --color-text-secondary: #666666;
+  --color-text-light:     #999999;
+  --color-text-on-dark:   #FFFFFF;
+
+  /* Border */
+  --color-border:         #E8DDE0;
+  --color-border-light:   #F0E8EB;
+
+  /* Status */
+  --color-success:        #4CAF50;
+  --color-warning:        #FF9800;
+  --color-error:          #F44336;
+
+  /* ── Typography ── */
+  --font-primary:   'Outfit', 'Inter', sans-serif;
+  --font-secondary: 'Playfair Display', serif;
+
+  --text-xs:    0.75rem;
+  --text-sm:    0.875rem;
+  --text-base:  1rem;
+  --text-md:    1.125rem;
+  --text-lg:    1.25rem;
+  --text-xl:    1.5rem;
+  --text-2xl:   2rem;
+  --text-3xl:   2.5rem;
+  --text-4xl:   3.25rem;
+
+  --font-normal:   400;
+  --font-medium:   500;
+  --font-semibold: 600;
+  --font-bold:     700;
+  --font-extrabold: 800;
+
+  --leading-tight:  1.2;
+  --leading-normal: 1.5;
+  --leading-loose:  1.8;
+
+  /* ── Spacing ── */
+  --space-1:   0.25rem;
+  --space-2:   0.5rem;
+  --space-3:   0.75rem;
+  --space-4:   1rem;
+  --space-5:   1.25rem;
+  --space-6:   1.5rem;
+  --space-8:   2rem;
+  --space-10:  2.5rem;
+  --space-12:  3rem;
+  --space-16:  4rem;
+  --space-20:  5rem;
+  --space-24:  6rem;
+
+  /* ── Layout ── */
+  --container-max: 1280px;
+  --container-pad: clamp(1rem, 4vw, 2rem);
+  --header-h:      72px;
+
+  /* ── Radius ── */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   20px;
+  --radius-full: 9999px;
+
+  /* ── Shadows ── */
+  --shadow-sm:  0 1px 4px rgba(0,0,0,0.06);
+  --shadow-md:  0 4px 16px rgba(0,0,0,0.08);
+  --shadow-lg:  0 8px 32px rgba(0,0,0,0.12);
+  --shadow-xl:  0 16px 48px rgba(0,0,0,0.15);
+  --shadow-pink: 0 8px 32px rgba(200, 54, 90, 0.18);
+
+  /* ── Transitions ── */
+  --transition-fast:    150ms ease;
+  --transition-base:    250ms ease;
+  --transition-slow:    400ms ease;
+  --transition-bounce:  300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ── Z-index ── */
+  --z-base:    1;
+  --z-dropdown: 100;
+  --z-sticky:  200;
+  --z-modal:   300;
+  --z-toast:   400;
+}

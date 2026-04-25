@@ -1,0 +1,50 @@
+.product-img-cell {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.product-img-cell img {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-sm);
+    object-fit: cover;
+    border: 1px solid var(--color-border-light);
+}
+
+.product-name-txt {
+    font-weight: var(--font-bold);
+    color: var(--color-dark);
+    font-size: 13px;
+}
+
+.product-brand-txt {
+    font-size: 11px;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+}
+
+.status-badge {
+    display: inline-flex;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    font-size: 11px;
+    font-weight: var(--font-bold);
+}
+
+.status-badge--active {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: #4CAF50;
+}
+
+.status-badge--inactive {
+    background-color: rgba(158, 158, 158, 0.1);
+    color: #9E9E9E;
+}
+
+.status-badge--warning {
+    background-color: rgba(255, 152, 0, 0.1);
+    color: #FF9800;
+}

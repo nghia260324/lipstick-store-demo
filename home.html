@@ -1,0 +1,793 @@
+<html lang="vi"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LipLux – Son Môi Cao Cấp | Dior, Gucci, Hermès</title>
+    <meta name="description" content="Mua son môi chính hãng Dior, Gucci, Hermès với giá tốt nhất. Son lì, son kem, son dưỡng, son thỏi, son hũ cao cấp.">
+    <link rel="stylesheet" href="./assets/css/base/variables.css">
+    <link rel="stylesheet" href="./assets/css/base/reset.css">
+    <link rel="stylesheet" href="./assets/css/base/typography.css">
+    <link rel="stylesheet" href="./assets/css/base/utilities.css">
+    <link rel="stylesheet" href="./assets/css/components/header.css">
+    <link rel="stylesheet" href="./assets/css/components/footer.css">
+    <link rel="stylesheet" href="./assets/css/components/button.css">
+    <link rel="stylesheet" href="./assets/css/components/badge.css">
+    <link rel="stylesheet" href="./assets/css/components/product-card.css">
+    <link rel="stylesheet" href="./assets/css/components/form.css">
+    <link rel="stylesheet" href="./assets/css/pages/home.css">
+    <link rel="stylesheet" href="./assets/css/components/user.css">
+                            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        /* Profile dropdown (index only - copy to other pages if needed) */
+        .profile-menu {
+            position: relative;
+            display: inline-flex;
+        }
+
+        .profile-menu>summary {
+            list-style: none;
+        }
+
+        .profile-menu>summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .profile-menu__btn {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-md);
+            color: var(--color-text);
+            font-size: 18px;
+            transition: color var(--transition-fast), background var(--transition-fast);
+            cursor: pointer;
+        }
+
+        .profile-menu__btn:hover {
+            color: var(--color-primary);
+            background: var(--color-bg-alt);
+        }
+
+        .profile-menu[open] .profile-menu__btn {
+            color: var(--color-primary);
+            background: var(--color-bg-alt);
+        }
+
+        .profile-menu__dropdown {
+            position: absolute;
+            top: calc(100% + 12px);
+            right: 0;
+            width: min(320px, 92vw);
+            background: var(--color-surface);
+            border: 1px solid var(--color-border-light);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+            padding: var(--space-3);
+            z-index: var(--z-dropdown);
+            transform-origin: top right;
+            animation: slideDown 0.18s ease both;
+        }
+
+        .profile-menu__head {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-3) var(--space-3);
+            border-radius: var(--radius-md);
+            background: var(--color-bg-alt);
+            margin-bottom: var(--space-2);
+        }
+
+        .profile-menu__avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+            color: #fff;
+            font-weight: var(--font-bold);
+            flex-shrink: 0;
+            box-shadow: 0 6px 18px rgba(200, 54, 90, 0.25);
+            overflow: hidden;
+        }
+
+        .profile-menu__avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-menu__name {
+            font-weight: var(--font-bold);
+            color: var(--color-dark);
+            font-size: var(--text-sm);
+            line-height: 1.25;
+        }
+
+        .profile-menu__meta {
+            font-size: var(--text-xs);
+            color: var(--color-text-secondary);
+            margin-top: 2px;
+        }
+
+        .profile-menu__item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-3) var(--space-3);
+            border-radius: var(--radius-md);
+            color: var(--color-text);
+            font-size: var(--text-sm);
+            font-weight: var(--font-semibold);
+            transition: background var(--transition-fast), color var(--transition-fast);
+            cursor: pointer;
+            user-select: none;
+            text-decoration: none;
+        }
+
+        .profile-menu__item:hover {
+            background: var(--color-bg-alt);
+            color: var(--color-primary);
+        }
+
+        .profile-menu__item i {
+            font-size: 18px;
+            width: 20px;
+            text-align: center;
+            flex-shrink: 0;
+            color: var(--color-text-light);
+            transition: color var(--transition-fast);
+        }
+
+        .profile-menu__item:hover i {
+            color: var(--color-primary);
+        }
+
+        .profile-menu__divider {
+            height: 1px;
+            background: var(--color-border-light);
+            margin: var(--space-2) 0;
+        }
+
+        .profile-menu__badge {
+            margin-left: auto;
+            font-size: var(--text-xs);
+            font-weight: var(--font-bold);
+            color: var(--color-primary);
+            background: rgba(200, 54, 90, 0.08);
+            padding: 3px 10px;
+            border-radius: var(--radius-full);
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOPBAR -->
+    <div class="topbar" id="topbar">
+        <div class="container">
+            <div class="topbar__inner">
+                <span class="topbar__icon">🚚</span>
+                <span>Miễn phí vận chuyển cho đơn hàng từ <strong>500.000đ</strong> · Nhận hàng trong 2–4 ngày</span>
+            </div>
+            <span class="topbar__close" id="topbarClose">✕</span>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+<header class="header" id="header">
+    <div class="container">
+        <div class="header__inner">
+            <!-- Logo -->
+            <a href="home.html" class="header__logo">
+                <div class="logo-icon">💄</div>
+                <div class="logo-text">
+                    <span class="logo-name">LipLux</span>
+                    <span class="logo-tagline">Luxury Lipstick</span>
+                </div>
+            </a>
+
+            <!-- Nav -->
+            <nav class="nav">
+                <a href="home.html" class="nav__link active">Trang
+                    chủ</a>
+                <div class="nav__item">
+                    <a href="products.html" class="nav__link ">Sản phẩm ▾</a>
+                                        <div class="nav__dropdown">
+                                                    <a href="products.html?cat=13" class="nav__dropdown-link">Son dưỡng</a>
+                                                    <a href="products.html?cat=14" class="nav__dropdown-link">Son hũ</a>
+                                                    <a href="products.html?cat=15" class="nav__dropdown-link">Son kem</a>
+                                                    <a href="products.html?cat=16" class="nav__dropdown-link">Son lì</a>
+                                                    <a href="products.html?cat=17" class="nav__dropdown-link">Son thỏi</a>
+                                            </div>
+                </div>
+                <div class="nav__item">
+                    <a href="products.html" class="nav__link">Thương hiệu ▾</a>
+                                        <div class="nav__dropdown">
+                                                    <a href="products.html?brand=2" class="nav__dropdown-link">Chanel</a>
+                                                    <a href="products.html?brand=1" class="nav__dropdown-link">Dior</a>
+                                                    <a href="products.html?brand=3" class="nav__dropdown-link">Gucci</a>
+                                                    <a href="products.html?brand=4" class="nav__dropdown-link">Hermès</a>
+                                            </div>
+                </div>
+                <!-- <a href="products.html?sale=1" class="nav__link" style="color:var(--color-primary)">Sale 🔥</a> -->
+            </nav>
+
+            <!-- Actions -->
+            <div class="header__actions">
+                <div class="search-bar">
+                    <i class="bi bi-search search-bar__icon"></i>
+                    <input type="text" placeholder="Tìm son môi...">
+                </div>
+                <a href="cart.html" class="header__action-btn" title="Giỏ hàng">
+                    <i class="bi bi-bag"></i>
+                    <span class="header__action-badge" id="cartBadge">1</span>
+                </a>
+                <!-- PROFILE (logged-in UI) -->
+                                    <details class="profile-menu">
+                        <summary class="profile-menu__btn" aria-label="Tài khoản">
+                            <i class="bi bi-person"></i>
+                        </summary>
+                        <div class="profile-menu__dropdown">
+                            <div class="profile-menu__head">
+                                <div class="profile-menu__avatar">
+                                                                            <img src="uploads/avatar/avatar_3_1777105057.jpg" alt="Avatar">
+                                                                    </div>
+                                <div>
+                                    <div class="profile-menu__name">Super Admin</div>
+                                    <div class="profile-menu__meta">
+                                        admin@gmail.com                                                                                    · <span style="color:var(--color-primary);font-weight:var(--font-bold)">Admin</span>
+                                                                            </div>
+                                </div>
+                            </div>
+
+                                                            <!-- Admin option -->
+                                <a class="profile-menu__item" href="admin/dashboard.html">
+                                    <i class="bi bi-speedometer2"></i>
+                                    Vào trang Admin
+                                    <span class="profile-menu__badge">Admin</span>
+                                </a>
+                                <div class="profile-menu__divider"></div>
+                            
+                            <a class="profile-menu__item" href="profile.html">
+                                <i class="bi bi-person-circle"></i>
+                                Xem hồ sơ
+                            </a>
+                            <a class="profile-menu__item" href="orders.html">
+                                <i class="bi bi-receipt"></i>
+                                Đơn hàng của tôi
+                            </a>
+
+                            <div class="profile-menu__divider"></div>
+
+                            <a class="profile-menu__item" href="logout.html">
+                                <i class="bi bi-box-arrow-right"></i>
+                                Đăng xuất
+                            </a>
+                        </div>
+                    </details>
+                                <button class="hamburger" id="hamburger" aria-label="Menu">
+                    <span class="hamburger__line"></span>
+                    <span class="hamburger__line"></span>
+                    <span class="hamburger__line"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu__overlay" id="menuOverlay"></div>
+        <div class="mobile-menu__panel">
+            <div class="mobile-menu__close" id="menuClose">✕</div>
+            <nav class="mobile-menu__links">
+                <a href="index.html" class="mobile-menu__link active">🏠 Trang chủ</a>
+                <a href="products.html" class="mobile-menu__link">💄 Tất cả sản phẩm</a>
+                <div class="mobile-menu__divider"></div>
+                <a href="products.html?cat=son-li" class="mobile-menu__link">· Son lì</a>
+                <a href="products.html?cat=son-kem" class="mobile-menu__link">· Son kem</a>
+                <a href="products.html?cat=son-thoi" class="mobile-menu__link">· Son thỏi</a>
+                <a href="products.html?cat=son-duong" class="mobile-menu__link">· Son dưỡng</a>
+                <a href="products.html?cat=son-hu" class="mobile-menu__link">· Son hũ</a>
+                <div class="mobile-menu__divider"></div>
+                <a href="products.html?brand=Dior" class="mobile-menu__link">👑 Dior</a>
+                <a href="products.html?brand=Gucci" class="mobile-menu__link">✦ Gucci</a>
+                <a href="products.html?brand=Hermès" class="mobile-menu__link">🎀 Hermès</a>
+                <div class="mobile-menu__divider"></div>
+                <a href="cart.html" class="mobile-menu__link">🛍️ Giỏ hàng</a>
+            </nav>
+        </div>
+    </div>
+
+    <main>
+        
+<style>
+    .cat-card--simple {
+        background: var(--color-surface);
+        aspect-ratio: auto;
+        padding: var(--space-6) var(--space-4);
+        justify-content: center;
+    }
+
+    .cat-card--simple .cat-card__name {
+        color: var(--color-dark);
+        font-size: var(--text-md);
+    }
+
+    .cat-card--simple .cat-card__count {
+        color: var(--color-text-secondary);
+    }
+
+    .cat-card--simple:hover {
+        background: var(--color-bg-alt);
+        border-color: var(--color-primary);
+    }
+
+    /* Product Swatches */
+    .product-card__swatches {
+        display: flex;
+        gap: var(--space-2);
+        margin: var(--space-3) 0;
+        flex-wrap: wrap;
+    }
+
+    .product-card__swatch {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 2px solid #fff;
+        box-shadow: 0 0 0 1px var(--color-border-light);
+        cursor: pointer;
+        transition: all var(--transition-fast);
+    }
+
+    .product-card__swatch:hover {
+        transform: scale(1.15);
+    }
+
+    .product-card__swatch.active {
+        transform: scale(1.25);
+        box-shadow: 0 0 0 1.5px var(--color-primary);
+    }
+</style>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero__content">
+        <div class="hero__tag">✦ Bộ sưu tập mới 2025</div>
+        <h1 class="hero__title">
+            Vẻ đẹp không <span class="hero__title-accent">giới hạn</span>
+        </h1>
+        <p class="hero__desc">Khám phá bộ sưu tập son môi cao cấp từ các thương hiệu hàng đầu thế giới. Mỗi thỏi
+            son là
+            một tuyên ngôn về phong cách.</p>
+        <div class="hero__actions">
+            <a href="products.html" class="btn btn--primary btn--lg">Khám phá ngay</a>
+            <a href="products.html?sale=1" class="btn btn--ghost btn--lg">Xem khuyến mãi 🔥</a>
+        </div>
+        <div class="hero__stats">
+            <div>
+                <div class="hero__stat-value">500+</div>
+                <div class="hero__stat-label">Sản phẩm</div>
+            </div>
+            <div>
+                <div class="hero__stat-value">50K+</div>
+                <div class="hero__stat-label">Khách hàng</div>
+            </div>
+            <div>
+                <div class="hero__stat-value">4.9★</div>
+                <div class="hero__stat-label">Đánh giá</div>
+            </div>
+        </div>
+    </div>
+    <div class="hero__visual">
+        <img class="hero__img-main" src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1200&amp;q=80&amp;auto=format&amp;fit=crop" alt="Hero lipstick">
+        <div class="hero__img-overlay"></div>
+        <div class="hero__floating-card hero__floating-card--1">
+            <div class="float-card-title">Rouge Dior Velvet 999</div>
+            <div class="float-card-sub">1.050.000₫</div>
+            <div class="float-card-stars">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="hero__floating-card hero__floating-card--2">
+            <div class="float-card-title">🔥 Bán chạy nhất</div>
+            <div class="float-card-sub">+1.200 đã mua</div>
+        </div>
+    </div>
+</section>
+
+<!-- BRAND STRIP -->
+<div class="brands-strip">
+    <div class="brands-strip__track" id="brandTrack">
+                    <span class="brands-strip__item">Dior <span class="brands-strip__dot"></span></span>
+                    <span class="brands-strip__item">Chanel <span class="brands-strip__dot"></span></span>
+                    <span class="brands-strip__item">Gucci <span class="brands-strip__dot"></span></span>
+                    <span class="brands-strip__item">Hermès <span class="brands-strip__dot"></span></span>
+                    <span class="brands-strip__item">Dior <span class="brands-strip__dot"></span></span>
+                    <span class="brands-strip__item">Chanel <span class="brands-strip__dot"></span></span>
+                    <span class="brands-strip__item">Gucci <span class="brands-strip__dot"></span></span>
+                    <span class="brands-strip__item">Hermès <span class="brands-strip__dot"></span></span>
+                    <span class="brands-strip__item">Dior <span class="brands-strip__dot"></span></span>
+                    <span class="brands-strip__item">Chanel <span class="brands-strip__dot"></span></span>
+                    <span class="brands-strip__item">Gucci <span class="brands-strip__dot"></span></span>
+                    <span class="brands-strip__item">Hermès <span class="brands-strip__dot"></span></span>
+            </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="categories-section section">
+    <div class="container">
+        <div style="text-align:center;margin-bottom:var(--space-3)">
+            <div class="section-label" style="justify-content:center">Danh mục</div>
+        </div>
+        <h2 class="section-title text-center">Tìm son theo loại</h2>
+        <div class="categories-grid" id="categoriesGrid">
+                            <a href="products.html?cat=13" class="cat-card cat-card--simple">
+                    <div class="cat-card__body">
+                        <div class="cat-card__name">Son dưỡng</div>
+                        <div class="cat-card__count">2 sản phẩm</div>
+                    </div>
+                </a>
+                            <a href="products.html?cat=14" class="cat-card cat-card--simple">
+                    <div class="cat-card__body">
+                        <div class="cat-card__name">Son hũ</div>
+                        <div class="cat-card__count">0 sản phẩm</div>
+                    </div>
+                </a>
+                            <a href="products.html?cat=15" class="cat-card cat-card--simple">
+                    <div class="cat-card__body">
+                        <div class="cat-card__name">Son kem</div>
+                        <div class="cat-card__count">0 sản phẩm</div>
+                    </div>
+                </a>
+                            <a href="products.html?cat=16" class="cat-card cat-card--simple">
+                    <div class="cat-card__body">
+                        <div class="cat-card__name">Son lì</div>
+                        <div class="cat-card__count">0 sản phẩm</div>
+                    </div>
+                </a>
+                            <a href="products.html?cat=17" class="cat-card cat-card--simple">
+                    <div class="cat-card__body">
+                        <div class="cat-card__name">Son thỏi</div>
+                        <div class="cat-card__count">3 sản phẩm</div>
+                    </div>
+                </a>
+                    </div>
+    </div>
+</section>
+
+<!-- FEATURED PRODUCTS -->
+<section class="featured-section">
+    <div class="container">
+        <div class="section-head">
+            <div class="section-head__left">
+                <div class="section-label">Nổi bật</div>
+                <h2 class="section-title">Sản phẩm hot nhất</h2>
+            </div>
+            <a href="products.html" class="btn btn--outline">Xem tất cả →</a>
+        </div>
+        <div class="products-tabs" id="homeTabs"><button class="products-tab active" data-id="all">Tất cả</button><button class="products-tab" data-id="17">Son thỏi</button><button class="products-tab" data-id="13">Son dưỡng</button></div>
+        <div class="products-grid" id="featuredGrid">
+            <div class="product-card" data-id="1">
+                <div class="product-card__img-wrap">
+                    <img class="product-card__img" src="uploads/products/color_69e9d1e0088ea_0.jpg" alt="Son Chanel Rouge Allure Velvet" loading="lazy">
+                    <div class="product-card__actions">
+                        <a href="product-detail.html?id=1" class="product-card__action-btn" title="Xem nhanh">
+                            <i class="bi bi-eye"></i>
+                        </a>
+                    </div>
+                    <div class="product-card__cart-btn" data-id="1">
+                        <i class="bi bi-bag-plus"></i> Thêm vào giỏ
+                    </div>
+                </div>
+                <div class="product-card__body">
+                    <div class="product-card__brand">Chanel</div>
+                    <div class="product-card__name">Son Chanel Rouge Allure Velvet</div>
+                    <div class="product-card__swatches">
+                        
+            <span class="swatch active" style="background: #D1816A" title="Cam đất" data-id="3" data-price="1150000.00" data-image="uploads/products/color_69e9d1e0088ea_0.jpg">
+            </span>
+        
+            <span class="swatch " style="background: #FE4248" title="Đỏ Đào Ánh Cam" data-id="4" data-price="1150000.00" data-image="uploads/products/color_69e9d37e13870_0.jpg">
+            </span>
+        
+                    </div>
+                    <div class="product-card__price">
+                        <span class="price">1.150.000&nbsp;₫</span>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="product-card" data-id="2">
+                <div class="product-card__img-wrap">
+                    <img class="product-card__img" src="uploads/products/color_69eb0f300fff8_0.jpg" alt="Son Chanel Rouge Coco Baume" loading="lazy">
+                    <div class="product-card__actions">
+                        <a href="product-detail.html?id=2" class="product-card__action-btn" title="Xem nhanh">
+                            <i class="bi bi-eye"></i>
+                        </a>
+                    </div>
+                    <div class="product-card__cart-btn" data-id="2">
+                        <i class="bi bi-bag-plus"></i> Thêm vào giỏ
+                    </div>
+                </div>
+                <div class="product-card__body">
+                    <div class="product-card__brand">Chanel</div>
+                    <div class="product-card__name">Son Chanel Rouge Coco Baume</div>
+                    <div class="product-card__swatches">
+                        
+            <span class="swatch active" style="background: #9F413F" title="Hồng Đất" data-id="5" data-price="1450000.00" data-image="uploads/products/color_69eb0f300fff8_0.jpg">
+            </span>
+        
+            <span class="swatch " style="background: #E51C62" title="Hồng Đậm" data-id="6" data-price="1450000.00" data-image="uploads/products/color_69eb0f6b6029e_0.jpg">
+            </span>
+        
+            <span class="swatch " style="background: #E20725" title="Đỏ San Hô" data-id="7" data-price="1450000.00" data-image="uploads/products/color_69eb0f8c7511f_0.jpg">
+            </span>
+        
+            <span class="swatch " style="background: #931D33" title="Đỏ Đất" data-id="8" data-price="1450000.00" data-image="uploads/products/color_69eb0ff46b7c2_0.jpg">
+            </span>
+        
+                    </div>
+                    <div class="product-card__price">
+                        <span class="price">1.450.000&nbsp;₫</span>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="product-card" data-id="4">
+                <div class="product-card__img-wrap">
+                    <img class="product-card__img" src="uploads/products/color_69ec7b36610bf_0.jpg" alt="Son Gucci Rouge À Lèvres Mat" loading="lazy">
+                    <div class="product-card__actions">
+                        <a href="product-detail.html?id=4" class="product-card__action-btn" title="Xem nhanh">
+                            <i class="bi bi-eye"></i>
+                        </a>
+                    </div>
+                    <div class="product-card__cart-btn" data-id="4">
+                        <i class="bi bi-bag-plus"></i> Thêm vào giỏ
+                    </div>
+                </div>
+                <div class="product-card__body">
+                    <div class="product-card__brand">Gucci</div>
+                    <div class="product-card__name">Son Gucci Rouge À Lèvres Mat</div>
+                    <div class="product-card__swatches">
+                        
+            <span class="swatch active" style="background: #A33E30" title="Đỏ Gạch" data-id="10" data-price="1200000.00" data-image="uploads/products/color_69ec7b36610bf_0.jpg">
+            </span>
+        
+            <span class="swatch " style="background: #C71620" title="Đỏ Cam" data-id="11" data-price="1200000.00" data-image="uploads/products/color_69ec7b699ed62_0.jpg">
+            </span>
+        
+            <span class="swatch " style="background: #A20B1E" title="Đỏ Trầm" data-id="12" data-price="1200000.00" data-image="uploads/products/color_69ec7b88b74b7_0.jpg">
+            </span>
+        
+                    </div>
+                    <div class="product-card__price">
+                        <span class="price">1.200.000&nbsp;₫</span>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="product-card" data-id="3">
+                <div class="product-card__img-wrap">
+                    <img class="product-card__img" src="uploads/products/color_69eb127328eae_0.jpg" alt="Son Dior Addict Lip Glow" loading="lazy">
+                    <div class="product-card__actions">
+                        <a href="product-detail.html?id=3" class="product-card__action-btn" title="Xem nhanh">
+                            <i class="bi bi-eye"></i>
+                        </a>
+                    </div>
+                    <div class="product-card__cart-btn" data-id="3">
+                        <i class="bi bi-bag-plus"></i> Thêm vào giỏ
+                    </div>
+                </div>
+                <div class="product-card__body">
+                    <div class="product-card__brand">Dior</div>
+                    <div class="product-card__name">Son Dior Addict Lip Glow</div>
+                    <div class="product-card__swatches">
+                        
+            <span class="swatch active" style="background: #F97C65" title="Cam San Hô" data-id="9" data-price="1100000.00" data-image="uploads/products/color_69eb127328eae_0.jpg">
+            </span>
+        
+                    </div>
+                    <div class="product-card__price">
+                        <span class="price">1.100.000&nbsp;₫</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROMO BANNERS -->
+<section class="promo-section section">
+    <div class="container">
+        <div class="promo-grid">
+            <div class="promo-card" onclick="location.href='products.html?brand=Dior'">
+                <img class="promo-card__bg" src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=900&amp;q=80" alt="Dior Collection">
+                <div class="promo-card__overlay"></div>
+                <div class="promo-card__body">
+                    <div class="promo-card__label">Thương hiệu</div>
+                    <div class="promo-card__title">Bộ sưu tập Dior<br>Rouge 2025</div>
+                    <a href="products.html?brand=Dior" class="btn btn--light btn--sm" style="width:fit-content">Khám phá
+                        →</a>
+                </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:var(--space-5)">
+                <div class="promo-card promo-card--small" onclick="location.href='products.html?sale=1'" style="min-height:148px">
+                    <img class="promo-card__bg" src="https://images.unsplash.com/photo-1599733594230-6b823276abcc?w=600&amp;q=80" alt="Sale">
+                    <div class="promo-card__overlay"></div>
+                    <div class="promo-card__body">
+                        <div class="promo-card__label">Ưu đãi</div>
+                        <div class="promo-card__title">Giảm đến 20%</div>
+                        <a href="products.html?sale=1" class="btn btn--primary btn--sm" style="width:fit-content">Mua
+                            ngay</a>
+                    </div>
+                </div>
+                <div class="promo-card promo-card--small" onclick="location.href='products.html?cat=son-duong'" style="min-height:148px">
+                    <img class="promo-card__bg" src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=600&amp;q=80" alt="Son dưỡng">
+                    <div class="promo-card__overlay"></div>
+                    <div class="promo-card__body">
+                        <div class="promo-card__label">Mới về</div>
+                        <div class="promo-card__title">Son dưỡng cao cấp</div>
+                        <a href="products.html?cat=son-duong" class="btn btn--light btn--sm" style="width:fit-content">Xem thêm
+                            →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<!-- <section class="testimonials-section section">
+    <div class="container">
+        <div style="text-align:center;margin-bottom:var(--space-3)">
+            <div class="section-label" style="justify-content:center">Đánh giá</div>
+        </div>
+        <h2 class="section-title text-center">Khách hàng nói gì</h2>
+        <div class="testimonials-grid" style="margin-top:var(--space-10)">
+            <div class="testimonial-card">
+                <div class="testimonial-card__stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-card__text">"Son Dior Rouge Velvet 999 màu đẹp xuất sắc, lên môi cực kỳ
+                    mượt và lâu
+                    trôi. Đóng gói cẩn thận, giao nhanh hơn mong đợi!"</p>
+                <div class="testimonial-card__author">
+                    <img class="testimonial-card__avatar" src="https://i.pravatar.cc/80?img=47" alt="Minh Anh">
+                    <div>
+                        <div class="testimonial-card__name">Nguyễn Minh Anh</div>
+                        <div class="testimonial-card__tag">Đã mua Rouge Dior 999</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-card__stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-card__text">"Gucci son mình mua lần 3 rồi, chất lượng không bao giờ làm
+                    thất vọng. Màu
+                    sắc chuẩn, bền màu cả ngày không cần chỉnh lại."</p>
+                <div class="testimonial-card__author">
+                    <img class="testimonial-card__avatar" src="https://i.pravatar.cc/80?img=32" alt="Thu Hà">
+                    <div>
+                        <div class="testimonial-card__name">Trần Thu Hà</div>
+                        <div class="testimonial-card__tag">Đã mua Gucci Satin 25</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-card__stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-card__text">"Hermès son dưỡng dùng rất thích, không có cảm giác bí hay
+                    bóng quá. Môi
+                    mềm hơn sau 1 tuần dùng. Sẽ ủng hộ tiếp!"</p>
+                <div class="testimonial-card__author">
+                    <img class="testimonial-card__avatar" src="https://i.pravatar.cc/80?img=25" alt="Lan Phương">
+                    <div>
+                        <div class="testimonial-card__name">Lê Lan Phương</div>
+                        <div class="testimonial-card__tag">Đã mua Hermès Lip Balm</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+
+<!-- NEWSLETTER -->
+<section class="newsletter-section">
+    <div class="container">
+        <div class="newsletter__inner">
+            <div class="section-label" style="justify-content:center;color:var(--color-secondary)">Newsletter
+            </div>
+            <h2 class="newsletter__title">Nhận ưu đãi độc quyền</h2>
+            <p class="newsletter__desc">Đăng ký nhận thông báo về sản phẩm mới và ưu đãi đặc biệt chỉ dành riêng
+                cho thành
+                viên.</p>
+            <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+                <input class="newsletter-input" type="email" placeholder="Nhập email của bạn..." required="">
+                <button type="submit" class="btn btn--primary">Đăng ký</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+    </main>
+
+    <!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer__top">
+            <div class="footer__brand">
+                <div class="footer__logo">
+                    <div class="footer__logo-icon">💄</div>
+                    <span class="footer__logo-name">LipLux</span>
+                </div>
+                <p class="footer__desc">Điểm đến tin cậy cho những tín đồ son môi cao cấp. Chính hãng 100%, giao
+                    hàng toàn
+                    quốc.</p>
+                <div class="footer__socials">
+                    <a href="#" class="footer__social-link" title="Facebook"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="footer__social-link" title="Instagram"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="footer__social-link" title="TikTok"><i class="bi bi-tiktok"></i></a>
+                    <a href="#" class="footer__social-link" title="YouTube"><i class="bi bi-youtube"></i></a>
+                </div>
+                <div class="footer__payments">
+                    <span class="footer__payment-icon">VISA</span>
+                    <span class="footer__payment-icon">MC</span>
+                    <span class="footer__payment-icon">MoMo</span>
+                    <span class="footer__payment-icon">ZaloPay</span>
+                </div>
+            </div>
+            <div>
+                <div class="footer__col-title">Sản phẩm</div>
+                <nav class="footer__links">
+                    <a href="products.html?cat=son-li" class="footer__link">Son lì</a>
+                    <a href="products.html?cat=son-kem" class="footer__link">Son kem</a>
+                    <a href="products.html?cat=son-thoi" class="footer__link">Son thỏi</a>
+                    <a href="products.html?cat=son-duong" class="footer__link">Son dưỡng</a>
+                    <a href="products.html?cat=son-hu" class="footer__link">Son hũ</a>
+                </nav>
+            </div>
+            <div>
+                <div class="footer__col-title">Thương hiệu</div>
+                <nav class="footer__links">
+                    <a href="products.html?brand=Dior" class="footer__link">Dior</a>
+                    <a href="products.html?brand=Gucci" class="footer__link">Gucci</a>
+                    <a href="products.html?brand=Hermès" class="footer__link">Hermès</a>
+                </nav>
+            </div>
+            <div>
+                <div class="footer__col-title">Liên hệ</div>
+                <div class="footer__contact-items">
+                    <div class="footer__contact-item">
+                        <div class="footer__contact-item-icon"><i class="bi bi-geo-alt-fill"></i></div>
+                        <span>123 Nguyễn Huệ, Q.1, TP.HCM</span>
+                    </div>
+                    <div class="footer__contact-item">
+                        <div class="footer__contact-item-icon"><i class="bi bi-telephone-fill"></i></div>
+                        <span>1800 1234 (Miễn phí)</span>
+                    </div>
+                    <div class="footer__contact-item">
+                        <div class="footer__contact-item-icon"><i class="bi bi-envelope-fill"></i></div>
+                        <span>hello@liplux.vn</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <p class="footer__bottom-text">© 2025 LipLux. Tất cả quyền được bảo lưu.</p>
+            <div class="footer__bottom-links">
+                <a href="#" class="footer__bottom-link">Chính sách bảo mật</a>
+                <a href="#" class="footer__bottom-link">Điều khoản sử dụng</a>
+                <a href="#" class="footer__bottom-link">Chính sách đổi trả</a>
+            </div>
+        </div>
+    </div>
+</footer>
+    <div class="toast-container" id="toastContainer">
+
+    </div>
+    <script type="module" src="./assets/js/user/home.module.js"></script>
+
+
+</body></html>
