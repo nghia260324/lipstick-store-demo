@@ -23,7 +23,7 @@ class Products {
 
     async init() {
         console.log('Products module initialized');
-        this.initPagination();
+        // this.initPagination();
         await this.loadDependencies();
         this.bindEvents();
         this.fetchList();

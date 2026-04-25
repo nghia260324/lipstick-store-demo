@@ -20,7 +20,7 @@ class Orders {
 
     async init() {
         console.log('Orders module initialized');
-        this.initPagination();
+        // this.initPagination();
         this.bindEvents();
 
         const urlParams = new URLSearchParams(window.location.search);
@@ -33,22 +33,22 @@ class Orders {
             if (filterSearch) filterSearch.value = autoOrderCode;
         }
 
-        await this.fetchList();
-        this.fetchStats();
+        // await this.fetchList();
+        // this.fetchStats();
 
-        if (autoShow === '1' && autoOrderCode) {
-            // Trigger click on the view button of the searched order
-            setTimeout(() => {
-                const viewBtn = document.querySelector(`.view-btn[data-code="${autoOrderCode}"]`);
-                if (viewBtn) {
-                    viewBtn.click();
-                } else {
-                    // Fallback to the first view button if search worked
-                    const firstBtn = document.querySelector('.view-btn');
-                    if (firstBtn) firstBtn.click();
-                }
-            }, 200);
-        }
+        // if (autoShow === '1' && autoOrderCode) {
+        //     // Trigger click on the view button of the searched order
+        //     setTimeout(() => {
+        //         const viewBtn = document.querySelector(`.view-btn[data-code="${autoOrderCode}"]`);
+        //         if (viewBtn) {
+        //             viewBtn.click();
+        //         } else {
+        //             // Fallback to the first view button if search worked
+        //             const firstBtn = document.querySelector('.view-btn');
+        //             if (firstBtn) firstBtn.click();
+        //         }
+        //     }, 200);
+        // }
     }
 
     async fetchStats() {
